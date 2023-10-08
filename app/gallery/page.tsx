@@ -9,9 +9,10 @@ type SearchResult = {
 export default async function Gallery() {
   const results = (await cloudinary.v2.search
     .expression("resource_type:image")
-    .sort_by("public_id", "desc")
+    .sort_by("created_at", "desc")
     .max_results(30)
     .execute()) as { resources: SearchResult[] };
+
   return (
     <div className="py-8 px-6 space-y-8">
       <div className="flex justify-between items-center">

@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { CldUploadButton } from "next-cloudinary";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type UploadResult = {
@@ -9,16 +10,18 @@ type UploadResult = {
 };
 
 export default function ImageUploader() {
-  const [imageId, setImageId] = useState<string | null>(null);
+  const router = useRouter();
 
   return (
     <Button asChild>
       <CldUploadButton
-        onUpload={(result) => {
-          const info = result.info as UploadResult;
-          setImageId(info.public_id);
-        }}
         uploadPreset="myt53wsq"
+        onUpload={() => {
+          setTimeout(() => {
+            //TODO this is quick fix because of race condition, need to find better solution
+            router.refresh();
+          }, 1000);
+        }}
       />
     </Button>
   );
