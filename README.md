@@ -1,4 +1,4 @@
-# img-converter: A versatile image conversion and optimization tool for all your development needs. Convert, optimize, and enhance images effortlessly. Explore it now! 🌠
+# img-app: 🌠
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
