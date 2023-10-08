@@ -29,7 +29,7 @@ export default function RootLayout({
         >
           <div className="border-b">
             <div className="flex h-16 items-center px-4">
-              <h1 className="pl-3 font-bold text-xl">Photos App</h1>
+              <h1 className="pl-3 font-bold text-4xl">Photos App</h1>
               <div className="ml-auto flex items-center space-x-4">
                 <ThemeSwitcher />
                 <Avatar>
@@ -44,7 +44,7 @@ export default function RootLayout({
           </div>
           <div className="flex w-full">
             <Sidebar className="w-52" />
-            {children}
+            <div className="w-full">{children}</div>
           </div>
         </ThemeProvider>
       </body>

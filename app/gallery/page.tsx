@@ -1,27 +1,28 @@
-"use client";
+import CldImage from "@/components/cloudinary/cloudinary-image";
+import ImageUploader from "@/components/cloudinary/cloudinary-image-uploader";
+import cloudinary from "cloudinary";
 
-import { Button } from "@/components/ui/button";
-import { CldUploadButton, CldImage } from "next-cloudinary";
-import { useState } from "react";
-
-type UploadResult = {
+type SearchResult = {
   public_id: string;
 };
 
-export default function Gallery() {
-  const [imageId, setImageId] = useState<string | null>(null);
-
+export default async function Gallery() {
+  const results = (await cloudinary.v2.search
+    .expression("resource_type:image")
+    .sort_by("public_id", "desc")
+    .max_results(30)
+    .execute()) as { resources: SearchResult[] };
   return (
-    <div className="">
-      <Button asChild>
-        <CldUploadButton
-          onUpload={(result) => {
-            const info = result.info as UploadResult;
-            setImageId(info.public_id);
-          }}
-          uploadPreset="myt53wsq"
-        />
-      </Button>
+    <div className="py-8 px-6 space-y-8">
+      <div className="flex justify-between items-center">
+        <h1 className="font-bold text-2xl">Gallery</h1>
+        <ImageUploader />
+      </div>
+      <div className="grid grid-cols-3 gap-4">
+        {results?.resources?.map(({ public_id }) => (
+          <CldImage key={public_id} src={public_id} />
+        ))}
+      </div>
     </div>
   );
 }
