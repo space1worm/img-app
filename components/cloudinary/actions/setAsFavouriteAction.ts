@@ -1,5 +1,6 @@
 "use server";
 
+import { ROUTES } from "@/utils/routes";
 import cloudinary from "cloudinary";
 import { revalidatePath } from "next/cache";
 
@@ -15,5 +16,5 @@ export const setAsFavouriteAction = async (
 
   //TODO fix this hack later, sync issue with cloudinary. use useOptimistic instead..
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  revalidatePath("/gallery");
+  revalidatePath(ROUTES.gallery);
 };

@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { ROUTES } from "@/utils/routes";
 
 export function Sidebar({ className }: { className?: string }) {
   return (
@@ -11,7 +12,7 @@ export function Sidebar({ className }: { className?: string }) {
             Manage
           </h2>
           <div className="space-y-1">
-            <Link href="/gallery">
+            <Link href={ROUTES.gallery}>
               <Button variant="secondary" className="w-full justify-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
