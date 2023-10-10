@@ -1,7 +1,21 @@
-export default function page() {
+import type { ImageSearchResults } from "@/types";
+import cloudinary from "cloudinary";
+
+import { ROUTES } from "@/utils/routes";
+import CloudinaryImages from "@/components/cld-images";
+
+export default async function page() {
+  const results = (await cloudinary.v2.search
+    .expression("resource_type:image AND tags=favourite")
+    .sort_by("created_at", "desc")
+    .with_field("tags")
+    .max_results(30)
+    .execute()) as ImageSearchResults;
+
   return (
-    <div>
-      <h1>Favourites</h1>
+    <div className="space-y-8 px-6 py-8">
+      <h1 className="text-2xl font-bold">Gallery</h1>
+      <CloudinaryImages resources={results.resources} pathToRevalidate={ROUTES.favourites} />
     </div>
   );
 }

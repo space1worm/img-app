@@ -9,9 +9,10 @@ import { setAsFavouriteAction } from "./actions/setAsFavouriteAction";
 type Props = {
   src: string;
   tags: string[];
+  pathToRevalidate: string;
 };
 
-export default function Image({ src, tags }: Props) {
+export default function CloudinaryImage({ src, tags, pathToRevalidate }: Props) {
   const [_, setTransition] = useTransition();
 
   const isFavourite = tags.includes("favourite");
@@ -23,7 +24,11 @@ export default function Image({ src, tags }: Props) {
           className="absolute right-4 top-4 h-8 w-8 transition-colors hover:cursor-pointer hover:text-red-500"
           onClick={() => {
             setTransition(async () => {
-              await setAsFavouriteAction(src, false);
+              await setAsFavouriteAction({
+                publicId: src,
+                isFavourite: false,
+                pathToRevalidate: pathToRevalidate,
+              });
             });
           }}
         />
@@ -32,7 +37,11 @@ export default function Image({ src, tags }: Props) {
           className="absolute right-4 top-4 h-8 w-8 transition-colors hover:cursor-pointer hover:text-red-500"
           onClick={() => {
             setTransition(async () => {
-              await setAsFavouriteAction(src, true);
+              await setAsFavouriteAction({
+                publicId: src,
+                isFavourite: true,
+                pathToRevalidate: pathToRevalidate,
+              });
             });
           }}
         />
