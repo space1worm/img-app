@@ -1,6 +1,6 @@
 "use client";
 
-import { CldUploadButton, CldImage } from "next-cloudinary";
+import { CldImage, CldUploadButton } from "next-cloudinary";
 import { useState } from "react";
 
 type UploadResult = {

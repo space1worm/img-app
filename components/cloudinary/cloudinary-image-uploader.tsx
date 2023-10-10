@@ -1,13 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { CldUploadButton } from "next-cloudinary";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
-type UploadResult = {
-  public_id: string;
-};
+import { Button } from "@/components/ui/button";
 
 export default function ImageUploader() {
   const router = useRouter();

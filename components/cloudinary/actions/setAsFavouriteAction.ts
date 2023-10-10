@@ -1,13 +1,12 @@
 "use server";
 
-import { ROUTES } from "@/utils/routes";
 import cloudinary from "cloudinary";
+
 import { revalidatePath } from "next/cache";
 
-export const setAsFavouriteAction = async (
-  public_id: string,
-  isFavourite?: boolean
-) => {
+import { ROUTES } from "@/utils/routes";
+
+export const setAsFavouriteAction = async (public_id: string, isFavourite?: boolean) => {
   if (isFavourite) {
     await cloudinary.v2.uploader.add_tag("favourite", [public_id]);
   } else {

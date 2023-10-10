@@ -1,11 +1,11 @@
+import type { ImageResource } from "@/types";
+import cloudinary from "cloudinary";
+
 import CldImage from "@/components/cloudinary/cloudinary-image";
 import ImageUploader from "@/components/cloudinary/cloudinary-image-uploader";
 
-import cloudinary from "cloudinary";
-
-export type SearchResult = {
-  public_id: string;
-  tags: string[];
+type SearchResults = {
+  resources: ImageResource[];
 };
 
 export default async function Gallery() {
@@ -14,12 +14,12 @@ export default async function Gallery() {
     .sort_by("created_at", "desc")
     .with_field("tags")
     .max_results(5)
-    .execute()) as { resources: SearchResult[] };
+    .execute()) as SearchResults;
 
   return (
-    <div className="py-8 px-6 space-y-8">
-      <div className="flex justify-between items-center">
-        <h1 className="font-bold text-2xl">Gallery</h1>
+    <div className="space-y-8 px-6 py-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Gallery</h1>
         <ImageUploader />
       </div>
       <div className="grid grid-cols-3 gap-4">

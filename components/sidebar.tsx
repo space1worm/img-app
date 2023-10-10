@@ -1,16 +1,16 @@
-import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
 import Link from "next/link";
+
+import { cn } from "@/lib/utils";
 import { ROUTES } from "@/utils/routes";
+
+import { Button } from "./ui/button";
 
 export function Sidebar({ className }: { className?: string }) {
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            Manage
-          </h2>
+          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Manage</h2>
           <div className="space-y-1">
             <Link href={ROUTES.gallery}>
               <Button variant="secondary" className="w-full justify-start">
