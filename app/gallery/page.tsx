@@ -1,9 +1,8 @@
 import type { ImageSearchResults } from "@/types";
 import cloudinary from "cloudinary";
 
-import { ROUTES } from "@/utils/routes";
-import CloudinaryImages from "@/components/cld-images";
 import ImageUploader from "@/components/cloudinary/cloudinary-image-uploader";
+import GalleryImages from "@/components/gallery-images";
 
 export default async function Gallery() {
   const results = (await cloudinary.v2.search
@@ -19,7 +18,7 @@ export default async function Gallery() {
         <h1 className="text-2xl font-bold">Gallery</h1>
         <ImageUploader />
       </div>
-      <CloudinaryImages resources={results.resources} pathToRevalidate={ROUTES.gallery} />
+      <GalleryImages intialResources={results.resources} />
     </div>
   );
 }
