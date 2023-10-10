@@ -1,8 +1,9 @@
 "use client";
 
 import { CldImage } from "next-cloudinary";
-import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 import { useTransition } from "react";
+
+import Icons from "@/utils/Icons";
 
 import { setAsFavouriteAction } from "./actions/setAsFavouriteAction";
 
@@ -20,7 +21,7 @@ export default function CloudinaryImage({ src, tags, pathToRevalidate }: Props) 
   return (
     <div className="relative">
       {isFavourite ? (
-        <HeartFilledIcon
+        <Icons.HeartFilledIcon
           className="absolute right-4 top-4 h-8 w-8 transition-colors hover:cursor-pointer hover:text-red-500"
           onClick={() => {
             setTransition(async () => {
@@ -33,7 +34,7 @@ export default function CloudinaryImage({ src, tags, pathToRevalidate }: Props) 
           }}
         />
       ) : (
-        <HeartIcon
+        <Icons.HeartIcon
           className="absolute right-4 top-4 h-8 w-8 transition-colors hover:cursor-pointer hover:text-red-500"
           onClick={() => {
             setTransition(async () => {

@@ -9,12 +9,12 @@ export default async function page() {
     .expression("resource_type:image AND tags=favourite")
     .sort_by("created_at", "desc")
     .with_field("tags")
-    .max_results(30)
+    .max_results(20)
     .execute()) as ImageSearchResults;
 
   return (
     <div className="space-y-8 px-6 py-8">
-      <h1 className="text-2xl font-bold">Gallery</h1>
+      <h1 className="text-2xl font-bold">Favourites</h1>
       <CloudinaryImages resources={results.resources} pathToRevalidate={ROUTES.favourites} />
     </div>
   );
