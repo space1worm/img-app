@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 
 import Icons from "@/utils/Icons";
 import { TAGS } from "@/constants/tags";
+import ImgActions from "@/components/img-actions";
 
 import { setAsFavouriteAction } from "./actions/setAsFavouriteAction";
 
@@ -20,34 +21,37 @@ export default function CloudinaryImage({ src, tags, onUnheart }: Props) {
 
   return (
     <div className="relative">
-      {isFavourite ? (
-        <Icons.HeartFilledIcon
-          className="absolute right-4 top-4 h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
-          onClick={() => {
-            setIsFavourite(false);
-            onUnheart && onUnheart(src);
-            setTransition(() => {
-              void setAsFavouriteAction({
-                publicId: src,
-                isFavourite: false,
+      <div className="absolute flex w-full justify-between p-2">
+        {isFavourite ? (
+          <Icons.HeartFilledIcon
+            className=" h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
+            onClick={() => {
+              setIsFavourite(false);
+              onUnheart && onUnheart(src);
+              setTransition(() => {
+                void setAsFavouriteAction({
+                  publicId: src,
+                  isFavourite: false,
+                });
               });
-            });
-          }}
-        />
-      ) : (
-        <Icons.HeartIcon
-          className="absolute right-4 top-4 h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
-          onClick={() => {
-            setIsFavourite(true);
-            setTransition(() => {
-              void setAsFavouriteAction({
-                publicId: src,
-                isFavourite: true,
+            }}
+          />
+        ) : (
+          <Icons.HeartIcon
+            className=" h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
+            onClick={() => {
+              setIsFavourite(true);
+              setTransition(() => {
+                void setAsFavouriteAction({
+                  publicId: src,
+                  isFavourite: true,
+                });
               });
-            });
-          }}
-        />
-      )}
+            }}
+          />
+        )}
+        <ImgActions />
+      </div>
       <CldImage
         className="rounded-xl"
         width={400}
