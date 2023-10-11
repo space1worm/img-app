@@ -1,5 +1,3 @@
-import type { ImageResource } from "@/types";
-
 import { useState, type ChangeEvent } from "react";
 
 import { Button } from "@/components/ui/button";
