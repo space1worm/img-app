@@ -1,3 +1,5 @@
+import type { ImageResource } from "@/types";
+
 import { useState, type ChangeEvent } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -13,11 +15,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function AddToAlbumDialog() {
+import { addImageToFolder } from "./cloudinary/actions/addImageToFolder";
+
+type Props = {
+  public_id: string;
+};
+
+export default function AddToAlbumDialog({ public_id }: Props) {
   const [albumName, setAlbumName] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleImageMoveToAlbum = async () => {
+    setOpen(false);
+    await addImageToFolder({ folder: albumName, public_id });
+  };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="ghost" className="p-2">
           Add Photo to album
@@ -43,7 +57,9 @@ export default function AddToAlbumDialog() {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button onClick={handleImageMoveToAlbum} type="submit">
+            Save changes
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

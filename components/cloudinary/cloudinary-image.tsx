@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 
 import Icons from "@/utils/Icons";
 import { TAGS } from "@/constants/tags";
-import ImgActions from "@/components/img-actions";
+import ImgActions from "@/components/cloudinary/cloudinary-image-actions";
 
 import { setAsFavouriteAction } from "./actions/setAsFavouriteAction";
 
@@ -50,7 +50,7 @@ export default function CloudinaryImage({ src, tags, onUnheart }: Props) {
             }}
           />
         )}
-        <ImgActions />
+        <ImgActions image={{ public_id: src, tags }} />
       </div>
       <CldImage
         className="rounded-xl"
