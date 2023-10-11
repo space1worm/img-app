@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
 import Icons from "@/utils/Icons";
 import { ROUTES } from "@/utils/routes";
+import { cn } from "@/utils/utils";
 
 import { Button } from "./ui/button";
 
