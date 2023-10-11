@@ -20,6 +20,11 @@ const LINKS = [
     link: ROUTES.favourites,
     Icon: Icons.BookmarkIcon,
   },
+  {
+    label: "Albums",
+    link: ROUTES.albums,
+    Icon: Icons.FolderIcon,
+  },
 ];
 
 export function Sidebar({ className }: { className?: string }) {

@@ -3,6 +3,7 @@
 import type { ImageResource } from "@/types";
 
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,17 +20,18 @@ type Props = {
 };
 
 export default function CloudinaryImageActions({ className, image }: Props) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className={className}>
-      <DropdownMenu>
+      <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="bg-accent p-2 hover:bg-black">
             <EllipsisVerticalIcon className="h-7 w-7" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="flex flex-col gap-2 space-y-2 p-2.5">
-          <AddToAlbumDialog public_id={image.public_id} />
-          <AddToAlbumDialog public_id={image.public_id} />
+          <AddToAlbumDialog onClose={() => setOpen(false)} public_id={image.public_id} />
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

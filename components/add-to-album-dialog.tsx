@@ -17,19 +17,29 @@ import { addImageToFolder } from "./cloudinary/actions/addImageToFolder";
 
 type Props = {
   public_id: string;
+  onClose: () => void;
 };
 
-export default function AddToAlbumDialog({ public_id }: Props) {
+export default function AddToAlbumDialog({ onClose, public_id }: Props) {
   const [albumName, setAlbumName] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleImageMoveToAlbum = async () => {
+    onClose();
     setOpen(false);
-    await addImageToFolder({ folder: albumName, public_id });
+    await addImageToFolder({ album: albumName.toLowerCase(), public_id });
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(prevState) => {
+        if (!prevState) {
+          onClose();
+        }
+        setOpen(prevState);
+      }}
+    >
       <DialogTrigger asChild>
         <Button variant="ghost" className="p-2">
           Add Photo to album

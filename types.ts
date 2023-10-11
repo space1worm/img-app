@@ -3,6 +3,15 @@ export type ImageResource = {
   tags: string[];
 };
 
-export type ImageSearchResults = {
+export type ImageSearchResult = {
   resources: ImageResource[];
+};
+
+export type Folder = {
+  name: string;
+  path: string;
+};
+
+export type FoldersSearchResult = {
+  folders: Folder[];
 };

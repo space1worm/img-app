@@ -1,5 +1,6 @@
 import {
   BookmarkIcon,
+  FolderIcon,
   HeartIcon,
   MoonIcon,
   RectangleGroupIcon,
@@ -16,6 +17,7 @@ const Icons = {
   HeartIcon,
   HeartFilledIcon,
   XMarkIcon,
+  FolderIcon,
 };
 
 export default Icons;
