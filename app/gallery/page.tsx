@@ -2,7 +2,7 @@ import PageLayout from "@/layout/page-layout";
 import PageTitleLayout from "@/layout/page-title-layout";
 import Cloudinary from "@/services/Cloudinary";
 
-import ImageUploader from "@/components/cloudinary/cloudinary-image-uploader";
+import ImageUploader from "@/components/cloudinary-image-uploader";
 import GalleryImages from "@/components/gallery-images";
 import SearchForm from "@/components/search-form";
 

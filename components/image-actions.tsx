@@ -15,14 +15,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import AddToAlbumDialog from "../add-to-album-dialog";
+import AddToAlbumDialog from "./add-to-album-dialog";
 
 type Props = {
   image: ImageResource;
   className?: string;
 };
 
-export default function CloudinaryImageActions({ className, image }: Props) {
+export default function ImageActions({ className, image }: Props) {
   const [open, setOpen] = useState(false);
 
   const publidId = image.public_id;

@@ -10,7 +10,7 @@ type Props = {
   folder: Folder;
 };
 
-export default function CloudinaryAlbumCard({ folder }: Props) {
+export default function AlbumCard({ folder }: Props) {
   const { name } = folder;
   const link = `${ROUTES.albums}/${name}`;
 

@@ -5,7 +5,7 @@ import type { ImageResource } from "@/types";
 
 import { useEffect, useState } from "react";
 
-import CloudinaryImage from "./cloudinary/cloudinary-image";
+import CloudinaryImage from "./cloudinary-image";
 
 type Props = {
   intialResources: ImageResource[];

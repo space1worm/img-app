@@ -5,9 +5,9 @@ import { useState, useTransition } from "react";
 
 import { setAsFavouriteAction } from "@/actions/setAsFavouriteAction";
 import { TAGS } from "@/constants/tags";
-import ImageActions from "@/components/cloudinary/cloudinary-image-actions";
+import ImageActions from "@/components/image-actions";
 
-import Heart from "../heart";
+import Heart from "./heart";
 
 type Props = {
   src: string;
