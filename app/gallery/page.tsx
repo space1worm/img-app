@@ -1,3 +1,5 @@
+import PageLayout from "@/layout/page-layout";
+import PageTitleLayout from "@/layout/page-title-layout";
 import type { ImageSearchResult } from "@/types";
 import cloudinary from "cloudinary";
 
@@ -24,13 +26,14 @@ export default async function GalleryPage({ searchParams }: Props) {
     .execute()) as ImageSearchResult;
 
   return (
-    <div className="space-y-8 px-6 py-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Gallery</h1>
+    <PageLayout>
+      <PageTitleLayout title="Gallery">
         <ImageUploader />
+      </PageTitleLayout>
+      <div className="space-y-4">
+        <SearchForm />
+        <GalleryImages intialResources={results.resources} />
       </div>
-      <SearchForm />
-      <GalleryImages intialResources={results.resources} />
-    </div>
+    </PageLayout>
   );
 }

@@ -6,9 +6,9 @@ import ThemeProvider from "@/providers/theme-provider";
 
 import { Inter } from "next/font/google";
 
+import Banner from "@/components/banner";
 import { Sidebar } from "@/components/sidebar";
-import ThemeSwitcher from "@/components/theme-switcher";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import TopNavigation from "@/components/top-navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,18 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <div className="border-b">
-            <div className="flex h-16 items-center px-4">
-              <h1 className="pl-3 text-4xl font-bold">Photos App</h1>
-              <div className="ml-auto flex items-center space-x-4">
-                <ThemeSwitcher />
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-              </div>
-            </div>
-          </div>
+          <Banner />
+          <TopNavigation />
           <div className="flex w-full">
             <Sidebar className="w-52" />
             <div className="w-full">{children}</div>

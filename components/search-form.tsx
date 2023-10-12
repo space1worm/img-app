@@ -31,7 +31,7 @@ export default function SearchForm() {
       <div className="flex items-center gap-2">
         <Input
           id="search-by-tag"
-          placeholder="Outdoors"
+          placeholder="ex: favourite"
           onChange={(e) => setTagName(e.target.value)}
         />
         <Button type="submit">Search</Button>

@@ -1,3 +1,5 @@
+import PageLayout from "@/layout/page-layout";
+import PageTitleLayout from "@/layout/page-title-layout";
 import type { ImageSearchResult } from "@/types";
 import cloudinary from "cloudinary";
 
@@ -12,9 +14,9 @@ export default async function FavouritesPage() {
     .execute()) as ImageSearchResult;
 
   return (
-    <div className="space-y-8 px-6 py-8">
-      <h1 className="text-2xl font-bold">Favourites</h1>
+    <PageLayout>
+      <PageTitleLayout title="Favourites" />
       <FavouriteImages intialResources={results.resources} />
-    </div>
+    </PageLayout>
   );
 }

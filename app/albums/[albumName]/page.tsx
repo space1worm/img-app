@@ -1,3 +1,5 @@
+import PageLayout from "@/layout/page-layout";
+import PageTitleLayout from "@/layout/page-title-layout";
 import type { ImageSearchResult } from "@/types";
 import cloudinary from "cloudinary";
 
@@ -17,12 +19,12 @@ export default async function AlbumPage({ params: { albumName } }: Props) {
     .max_results(20)
     .execute()) as ImageSearchResult;
 
+  const albName = `Album ${albumName}`;
+
   return (
-    <div className="space-y-8 px-6 py-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Album: {albumName}</h1>
-      </div>
+    <PageLayout>
+      <PageTitleLayout title={albName} />
       <GalleryImages intialResources={results.resources} />
-    </div>
+    </PageLayout>
   );
 }

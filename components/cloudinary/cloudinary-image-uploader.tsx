@@ -11,7 +11,7 @@ export default function ImageUploader() {
   return (
     <Button asChild>
       <CldUploadButton
-        uploadPreset="myt53wsq"
+        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
         onUpload={() => {
           setTimeout(() => {
             //TODO this is quick fix because of race condition, need to find better solution

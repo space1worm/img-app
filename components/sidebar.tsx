@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import Icons from "@/utils/Icons";
 import { ROUTES } from "@/utils/routes";
@@ -28,19 +25,16 @@ const LINKS = [
 ];
 
 export function Sidebar({ className }: { className?: string }) {
-  const pathname = usePathname();
-
   return (
-    <div className={cn("pb-12", className)}>
+    <div className={cn("min-h-screen border-r-[0.2px] border-gray-50 pb-12", className)}>
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Manage</h2>
           <div className="flex flex-col gap-1">
             {LINKS.map(({ label, link, Icon }) => {
-              const variant = pathname === link ? "secondary" : "ghost";
               return (
                 <Link key={label} href={link}>
-                  <Button variant={variant} className="w-full justify-start">
+                  <Button variant="ghost" className="w-full justify-start">
                     <Icon className="h-6 w-6" />
                     <span className="ml-2">{label}</span>
                   </Button>

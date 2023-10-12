@@ -1,5 +1,8 @@
 "use client";
 
+import PageLayout from "@/layout/page-layout";
+import PageTitleLayout from "@/layout/page-title-layout";
+
 import { CldImage } from "next-cloudinary";
 import { useState } from "react";
 
@@ -19,10 +22,8 @@ export default function EditPage({ searchParams }: Props) {
   const { publicId } = searchParams;
 
   return (
-    <div className="space-y-8 px-6 py-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Edit Photo</h1>
-      </div>
+    <PageLayout>
+      <PageTitleLayout title="Edit Photo" />
       <div className="flex gap-2">
         <Button onClick={() => setTransformation("generative-fill")}>Generative Fill</Button>
         <Button onClick={() => setTransformation("blur")}>Apply Blur</Button>
@@ -63,6 +64,6 @@ export default function EditPage({ searchParams }: Props) {
           <CldImage src={publicId} width={300} height={200} alt="some image" pixelate />
         )}
       </div>
-    </div>
+    </PageLayout>
   );
 }
