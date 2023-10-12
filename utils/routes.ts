@@ -3,4 +3,5 @@ export const ROUTES = {
   gallery: "/gallery",
   favourites: "/favourites",
   albums: "/albums",
+  edit: "/edit",
 } as const;

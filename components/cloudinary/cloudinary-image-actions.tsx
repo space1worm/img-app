@@ -2,9 +2,12 @@
 
 import type { ImageResource } from "@/types";
 
+import Link from "next/link";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 
+import { ROUTES } from "@/utils/routes";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -22,6 +25,9 @@ type Props = {
 export default function CloudinaryImageActions({ className, image }: Props) {
   const [open, setOpen] = useState(false);
 
+  const publidId = image.public_id;
+  const editLink = `${ROUTES.edit}?publicId=${encodeURIComponent(publidId)}`;
+
   return (
     <div className={className}>
       <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -31,7 +37,14 @@ export default function CloudinaryImageActions({ className, image }: Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="flex flex-col gap-2 space-y-2 p-2.5">
-          <AddToAlbumDialog onClose={() => setOpen(false)} public_id={image.public_id} />
+          <DropdownMenuItem>
+            <AddToAlbumDialog onClose={() => setOpen(false)} public_id={publidId} />
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Button variant="ghost" className="w-full justify-start" asChild>
+              <Link href={editLink}>Edit Photo</Link>
+            </Button>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
