@@ -1,7 +1,6 @@
 import PageLayout from "@/layout/page-layout";
 import PageTitleLayout from "@/layout/page-title-layout";
-import type { ImageSearchResult } from "@/types";
-import cloudinary from "cloudinary";
+import Cloudinary from "@/services/Cloudinary";
 
 import GalleryImages from "@/components/gallery-images";
 
@@ -12,19 +11,13 @@ type Props = {
 };
 
 export default async function AlbumPage({ params: { albumName } }: Props) {
-  const results = (await cloudinary.v2.search
-    .expression(`resource_type:image AND folder=${albumName}`)
-    .sort_by("created_at", "desc")
-    .with_field("tags")
-    .max_results(20)
-    .execute()) as ImageSearchResult;
-
-  const albName = `Album ${albumName}`;
+  const { resources } = await Cloudinary.getFolderImages(albumName);
+  const title = `Album ${albumName}`;
 
   return (
     <PageLayout>
-      <PageTitleLayout title={albName} />
-      <GalleryImages intialResources={results.resources} />
+      <PageTitleLayout title={title} />
+      <GalleryImages intialResources={resources} />
     </PageLayout>
   );
 }

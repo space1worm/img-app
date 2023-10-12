@@ -1,6 +1,6 @@
 "use server";
 
-import cloudinary from "cloudinary";
+import Cloudinary from "@/services/Cloudinary";
 
 type AddImageToFolder = {
   album: string;
@@ -8,7 +8,7 @@ type AddImageToFolder = {
 };
 
 export async function addImageToFolder({ album, public_id }: AddImageToFolder) {
-  await cloudinary.v2.api.create_folder(album);
+  await Cloudinary.createFolder(album);
 
   let parts = public_id.split("/");
 
@@ -18,5 +18,11 @@ export async function addImageToFolder({ album, public_id }: AddImageToFolder) {
 
   const publicId = parts.join("/");
 
-  await cloudinary.v2.uploader.rename(public_id, `${album}/${publicId}`);
+  const payload = {
+    publicId: public_id,
+    folderName: album,
+    renamedPublicId: publicId,
+  };
+
+  await Cloudinary.renameImage(payload);
 }

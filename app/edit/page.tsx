@@ -8,7 +8,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-type Transformations = undefined | "generative-fill" | "blur" | "grayscale" | "pixelate";
+type Transformation = "generative-fill" | "blur" | "grayscale" | "pixelate" | undefined;
 
 type Props = {
   searchParams: {
@@ -16,31 +16,50 @@ type Props = {
   };
 };
 
-export default function EditPage({ searchParams }: Props) {
-  const [transformation, setTransformation] = useState<Transformations>();
+type ActionButtons = {
+  label: string;
+  transformation: Transformation;
+};
 
+const actionButtons: ActionButtons[] = [
+  {
+    label: "Generative Fill",
+    transformation: "generative-fill",
+  },
+  {
+    label: "Apply Blur",
+    transformation: "blur",
+  },
+  {
+    label: "Convert to Gray",
+    transformation: "grayscale",
+  },
+  {
+    label: "Pixelate",
+    transformation: "pixelate",
+  },
+  {
+    label: "Clear All",
+    transformation: undefined,
+  },
+];
+
+export default function EditPage({ searchParams }: Props) {
+  const [transformation, setTransformation] = useState<Transformation>();
   const { publicId } = searchParams;
 
   return (
     <PageLayout>
       <PageTitleLayout title="Edit Photo" />
       <div className="flex gap-2">
-        <Button onClick={() => setTransformation("generative-fill")}>Generative Fill</Button>
-        <Button onClick={() => setTransformation("blur")}>Apply Blur</Button>
-        <Button onClick={() => setTransformation("grayscale")}>Convert to Gray</Button>
-        <Button onClick={() => setTransformation("pixelate")}>Pixelate</Button>
-        <Button variant="destructive" onClick={() => setTransformation(undefined)}>
-          Clear All
-        </Button>
+        {actionButtons.map(({ label, transformation }) => (
+          <Button key={label} onClick={() => setTransformation(transformation)}>
+            {label}
+          </Button>
+        ))}
       </div>
       <div className="grid grid-cols-2 gap-6">
         <CldImage src={publicId} width={300} height={200} alt="some image" />
-        {transformation === "blur" && (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          <CldImage src={publicId} width={300} height={200} alt="some image" blur="800" />
-        )}
-
         {transformation === "generative-fill" && (
           <CldImage
             src={publicId}
@@ -51,13 +70,16 @@ export default function EditPage({ searchParams }: Props) {
             fillBackground
           />
         )}
-
+        {transformation === "blur" && (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          <CldImage src={publicId} width={300} height={200} alt="some image" blur="800" />
+        )}
         {transformation === "grayscale" && (
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           <CldImage src={publicId} width={300} height={200} alt="some image" grayscale />
         )}
-
         {transformation === "pixelate" && (
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore

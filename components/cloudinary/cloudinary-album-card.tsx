@@ -12,6 +12,7 @@ type Props = {
 
 export default function CloudinaryAlbumCard({ folder }: Props) {
   const { name } = folder;
+  const link = `${ROUTES.albums}/${name}`;
 
   return (
     <Card className="w-[350px]">
@@ -21,7 +22,7 @@ export default function CloudinaryAlbumCard({ folder }: Props) {
       </CardHeader>
       <CardFooter className="flex justify-between">
         <Button asChild>
-          <Link href={`${ROUTES.albums}/${name}`}>View album</Link>
+          <Link href={link}>View album</Link>
         </Button>
       </CardFooter>
     </Card>

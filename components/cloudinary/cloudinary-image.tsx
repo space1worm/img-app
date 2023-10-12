@@ -3,11 +3,11 @@
 import { CldImage } from "next-cloudinary";
 import { useState, useTransition } from "react";
 
-import Icons from "@/utils/Icons";
+import { setAsFavouriteAction } from "@/actions/setAsFavouriteAction";
 import { TAGS } from "@/constants/tags";
-import ImgActions from "@/components/cloudinary/cloudinary-image-actions";
+import ImageActions from "@/components/cloudinary/cloudinary-image-actions";
 
-import { setAsFavouriteAction } from "./actions/setAsFavouriteAction";
+import Heart from "../heart";
 
 type Props = {
   src: string;
@@ -19,38 +19,32 @@ export default function CloudinaryImage({ src, tags, onUnheart }: Props) {
   const [_, setTransition] = useTransition();
   const [isFavourite, setIsFavourite] = useState(tags.includes(TAGS.favourite));
 
+  const handleHeart = () => {
+    setIsFavourite(true);
+    setTransition(() => {
+      void setAsFavouriteAction({
+        publicId: src,
+        isFavourite: true,
+      });
+    });
+  };
+
+  const handleUnheart = () => {
+    setIsFavourite(false);
+    onUnheart && onUnheart(src);
+    setTransition(() => {
+      void setAsFavouriteAction({
+        publicId: src,
+        isFavourite: false,
+      });
+    });
+  };
+
   return (
     <div className="relative">
       <div className="absolute flex w-full justify-between p-2">
-        {isFavourite ? (
-          <Icons.HeartFilledIcon
-            className=" h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
-            onClick={() => {
-              setIsFavourite(false);
-              onUnheart && onUnheart(src);
-              setTransition(() => {
-                void setAsFavouriteAction({
-                  publicId: src,
-                  isFavourite: false,
-                });
-              });
-            }}
-          />
-        ) : (
-          <Icons.HeartIcon
-            className=" h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
-            onClick={() => {
-              setIsFavourite(true);
-              setTransition(() => {
-                void setAsFavouriteAction({
-                  publicId: src,
-                  isFavourite: true,
-                });
-              });
-            }}
-          />
-        )}
-        <ImgActions image={{ public_id: src, tags }} />
+        <Heart isFavourite={isFavourite} handleHeart={handleHeart} handleUnheart={handleUnheart} />
+        <ImageActions image={{ public_id: src, tags }} />
       </div>
       <CldImage
         className="rounded-xl"

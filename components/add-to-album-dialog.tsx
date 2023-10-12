@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import { addImageToFolder } from "./cloudinary/actions/addImageToFolder";
+import { addImageToFolder } from "../actions/addImageToFolder";
 
 type Props = {
   public_id: string;
@@ -29,7 +29,6 @@ export default function AddToAlbumDialog({ onClose, public_id }: Props) {
     setOpen(false);
     await addImageToFolder({ album: albumName.toLowerCase(), public_id });
   };
-
   return (
     <Dialog
       open={open}
