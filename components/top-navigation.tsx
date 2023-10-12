@@ -15,8 +15,8 @@ export default function TopNavigation() {
           <ThemeSwitcher />
           <Link href="https://github.com/space1worm" target="_blank">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@Sw" />
+              <AvatarFallback>Space1worm</AvatarFallback>
             </Avatar>
           </Link>
         </div>

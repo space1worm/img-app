@@ -16,11 +16,12 @@ export default function SearchForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    tagName
-      ? router.replace(`${ROUTES.gallery}?search=${encodeURIComponent(tagName)}`)
-      : router.replace(ROUTES.gallery);
-
-    router.refresh();
+    if (tagName) {
+      router.replace(`${ROUTES.gallery}?search=${encodeURIComponent(tagName)}`);
+      router.refresh();
+    } else {
+      router.replace(ROUTES.gallery);
+    }
   };
 
   return (

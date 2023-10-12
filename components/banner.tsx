@@ -9,6 +9,7 @@ export default function Banner() {
     const timer = setTimeout(() => {
       setShow(false);
     }, 8000);
+
     return () => clearTimeout(timer);
   }, []);
 

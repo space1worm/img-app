@@ -1,5 +1,6 @@
 "use client";
 
+import ImageGrid from "@/layout/images-layouts";
 import type { ImageResource } from "@/types";
 
 import { useEffect, useState } from "react";
@@ -18,10 +19,10 @@ export default function GalleryImages({ intialResources }: Props) {
   }, [intialResources]);
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <ImageGrid>
       {resources.map(({ public_id, tags }) => (
         <CloudinaryImage key={public_id} src={public_id} tags={tags} />
       ))}
-    </div>
+    </ImageGrid>
   );
 }

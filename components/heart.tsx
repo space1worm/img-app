@@ -16,7 +16,7 @@ export default function Heart({ isFavourite, handleUnheart, handleHeart }: Props
         />
       ) : (
         <Icons.HeartIcon
-          className=" h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
+          className="h-8 w-8 text-white transition-colors hover:cursor-pointer hover:text-red-500"
           onClick={handleHeart}
         />
       )}
