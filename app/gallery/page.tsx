@@ -3,10 +3,21 @@ import cloudinary from "cloudinary";
 
 import ImageUploader from "@/components/cloudinary/cloudinary-image-uploader";
 import GalleryImages from "@/components/gallery-images";
+import SearchForm from "@/components/search-form";
 
-export default async function GalleryPage() {
+type Props = {
+  searchParams: {
+    search: string;
+  };
+};
+
+export default async function GalleryPage({ searchParams }: Props) {
+  const { search } = searchParams;
+
+  const searchQuery = `resource_type:image${search ? ` AND tags=${search}` : ""}`;
+
   const results = (await cloudinary.v2.search
-    .expression("resource_type:image")
+    .expression(searchQuery)
     .sort_by("created_at", "desc")
     .with_field("tags")
     .max_results(20)
@@ -18,6 +29,7 @@ export default async function GalleryPage() {
         <h1 className="text-2xl font-bold">Gallery</h1>
         <ImageUploader />
       </div>
+      <SearchForm />
       <GalleryImages intialResources={results.resources} />
     </div>
   );

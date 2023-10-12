@@ -54,14 +54,12 @@ export default function EditPage({ searchParams }: Props) {
         {transformation === "grayscale" && (
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-
           <CldImage src={publicId} width={300} height={200} alt="some image" grayscale />
         )}
 
         {transformation === "pixelate" && (
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-
           <CldImage src={publicId} width={300} height={200} alt="some image" pixelate />
         )}
       </div>
