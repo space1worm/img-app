@@ -4,6 +4,8 @@ import Cloudinary from "@/services/Cloudinary";
 
 import FavouriteImages from "@/components/favourite-images";
 
+export const dynamic = "force-dynamic";
+
 export default async function FavouritesPage() {
   const { resources } = await Cloudinary.getFavouriteImages();
 
