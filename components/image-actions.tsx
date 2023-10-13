@@ -37,7 +37,7 @@ export default function ImageActions({ className, image }: Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="flex flex-col gap-2 space-y-2 p-2.5">
-          <DropdownMenuItem>
+          <DropdownMenuItem asChild>
             <AddToAlbumDialog onClose={() => setOpen(false)} public_id={publidId} />
           </DropdownMenuItem>
           <DropdownMenuItem>
